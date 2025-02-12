@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Horizontal Dividers and Hoverable Rows</title>
+    <style>
+        table {
+            width: 50%;
+            border-collapse: collapse;
+            border: none;
+        }
+
+        td {
+            text-align: center;
+        }
+
+        .horizontal tr {
+            border-bottom: 1px solid black
+        }
+
+        .horizontal,
+        .horizontal tr th,
+        .horizontal tr td {
+            border: 0;
+        }
+
+        .horizontal tr:hover {
+            background-color: aquamarine;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Table with horizontal dividers and hoverable</h2>
+    <table class="horizontal">
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Age</th>
+        </tr>
+        <tr>
+            <td>Prakhar</td>
+            <td>Goyal</td>
+            <td>23</td>
+        </tr>
+        <tr>
+            <td>Manish</td>
+            <td>Agrawal</td>
+            <td>25</td>
+        </tr>
+    </table>
+</body>
+
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rowspan Colspan Table</title>
+    <style>
+        table {
+            width: 50%;
+            border-collapse: collapse;
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid black;
+        }
+
+        td {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Table with colspan</h2>
+    <table>
+        <tr>
+            <th colspan="2">Name</th>
+            <th>Age</th>
+        </tr>
+        <tr>
+            <td>Prakhar</td>
+            <td>Goyal</td>
+            <td>23</td>
+        </tr>
+        <tr>
+            <td>Manish</td>
+            <td>Agrawal</td>
+            <td>25</td>
+        </tr>
+    </table>
+
+    <h2>Table with rowspan</h2>
+    <table>
+        <tr>
+            <th>Name</th>
+            <td>Prakhar</td>
+        </tr>
+        <tr>
+            <th rowspan="2">Phone number</th>
+            <td>2137213821</td>
+        </tr>
+        <tr>
+            <td>1223344556</td>
+        </tr>
+    </table>
+</body>
+
+</html>
