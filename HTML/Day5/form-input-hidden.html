@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Input Hidden</title>
+</head>
+
+<body>
+    <h2>Input Hidden</h2>
+    <form action="">
+        <label for="username">Username:</label>
+        <br>
+        <input type="text" id="username" name="username">
+        <br>
+        <input type="hidden" id="token" name="token" value="123456">
+        <br>
+        <input type="submit">
+    </form>
+    <script>
+        const form = document.querySelector( 'form' );
+        form.addEventListener( 'submit', ( event ) => {
+            event.preventDefault();
+            const username = form.username.value;
+            const token = form.token.value;
+            console.log( username, token );
+        } );
+    </script>
+</body>
+
+</html>
