@@ -1,0 +1,65 @@
+body {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f7f7f7;
+}
+
+h1 {
+    color: #2c3e50;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+/* Styles for the block-level elements */
+.typography-block {
+    background-color: #ecf0f1;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Styles for inline elements to differentiate from block elements */
+.inline-element {
+    margin-right: 1px;
+    padding: 2px 5px;
+    border-radius: 3px;
+}
+
+/* Different font styles to show the behaviour of inline elements */
+.font-serif {
+    font-family: "Times New Roman", Georgia, Times, serif;
+    background-color: #e74c3c;
+    color: white;
+}
+
+.font-sans-serif {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #3498db;
+    color: white;
+}
+
+.font-monospace {
+    font-family: "Courier New", Courier, monospace;
+    background-color: #4721df;
+    color: white;
+}
+
+.font-decorative {
+    font-family: "Brush Script MT", cursive;
+    background-color: #9b59b6;
+    color: white;
+    font-size: 20px;
+}
+
+.highlight {
+    background-color: #ffeaa7;
+}
+
+a {
+    color: #0345fc;
+}

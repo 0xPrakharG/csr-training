@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Contact Form</title>
+</head>
+
+<body>
+    <div class="container">
+        <h2>Contact Us</h2>
+        <form action="#">
+            <label for="name">Full Name:</label>
+            <!-- Validation pattern set as per name format which may include spaces -->
+            <input type="text" id="name" name="name" placeholder="Eg. Prakhar Goyal" required pattern="[a-zA-Z ]+"
+                autofocus>
+
+            <label for="email">Email:</label>
+            <!-- Validation pattern set as per email format which may include subdomains as well -->
+            <input type="email" id="email" name="email" placeholder="Eg. example@xyz.com" required
+                pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$">
+
+            <label for="phone">Phone Number:</label>
+            <!-- Validation pattern set as per indian phone number beginning from +91 for the country code -->
+            <input type="tel" id="phone" name="phone" placeholder="Eg. +919354347345" required
+                pattern="^\+91[\s]?[6-9]\d{9}$" maxlength="14">
+
+            <label for="message">Message:</label>
+            <!-- No validation is required for message but it is a required field -->
+            <textarea id="message" name="message" placeholder="Write your message here" required></textarea>
+
+            <input type="submit" value="Send Message">
+        </form>
+    </div>
+</body>
+
+</html>
