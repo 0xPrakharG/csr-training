@@ -1,0 +1,17 @@
+const d = new Date("2021-07-01");
+console.log(d.setDate(15));
+console.log(d);
+console.log(d.setFullYear(2022));
+console.log(d);
+console.log(d.setHours(12));
+console.log(d);
+console.log(d.setMilliseconds(500));
+console.log(d);
+console.log(d.setMinutes(30));
+console.log(d);
+console.log(d.setMonth(11));
+console.log(d);
+console.log(d.setSeconds(30));
+console.log(d);
+console.log(d.setTime(1740591409209));
+console.log(d);
