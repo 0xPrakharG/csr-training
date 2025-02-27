@@ -1,0 +1,16 @@
+console.log(Math.round(5.254));
+console.log(Math.ceil(2.55));
+console.log(Math.floor(43.212));
+console.log(Math.trunc(2323.3223));
+console.log(Math.sign(-1232));
+console.log(Math.pow(1, 34));
+console.log(Math.sqrt(169));
+console.log(Math.abs(-343.12));
+console.log(Math.sin(90 * (Math.PI / 180)));
+console.log(Math.cos(0 * (Math.PI / 180)));
+console.log(Math.min(0, 150, 30, 20, -8, -200));
+console.log(Math.max(0, 150, 30, 20, -8, -200));
+console.log(Math.random());
+console.log(Math.log(3));
+console.log(Math.log2(2));
+console.log(Math.log10(1000));
