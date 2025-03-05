@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Circle Drawer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        canvas {
+            border: 1px solid black;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Draw a Shape</h2>
+    <form id="shapeForm">
+        <div>
+            <label for="circle">
+                <input type="radio" id="circle" name="shape" value="CIRCLE">
+                Circle</label><br>
+            <label for="square">
+                <input type="radio" id="square" name="shape" value="SQUARE">
+                Square</label><br>
+            <label for="triangle">
+                <input type="radio" id="triangle" name="shape" value="TRIANGLE">
+                Triangle
+            </label>
+            <label for="star">
+                <input type="radio" id="star" name="shape" value="STAR">
+                Star
+            </label>
+        </div>
+
+        <div>
+            <label for="size">Enter Size:</label>
+            <input type="number" name="size" id="size" required placeholder="Enter">
+        </div>
+        <button type="submit">Draw</button>
+    </form>
+    <canvas id="shapeCanvas" width="500" height="500"></canvas>
+
+    <script src="./shapes.js" />
+    </body>
+
+</html>
