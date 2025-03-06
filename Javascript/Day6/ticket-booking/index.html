@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ticket Booking</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        table {
+            margin: auto;
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+
+        tr,
+        th,
+        td {
+            border: 1px solid black;
+            padding: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Welcome to Railway ticket booking system</h1>
+    <table>
+        <tr>
+            <th>S.No.</th>
+            <th>Train Number</th>
+            <th>Train Name</th>
+            <th>Source</th>
+            <th>Destination</th>
+            <th>Travel Class</th>
+            <th>Price</th>
+            <th>Select</th>
+        </tr>
+        <tr id="train_info">
+            <td>1.</td>
+            <td>12345</td>
+            <td>Nauchandi</td>
+            <td>Prayagraj</td>
+            <td>Bareilly</td>
+            <td>3AC</td>
+            <td>1000</td>
+            <td><input type="radio" name="train" id="train" value="NAUCHANDI" onclick="selectRowData(this)"></td>
+        </tr>
+        <tr id="train_info">
+            <td>2.</td>
+            <td>12346</td>
+            <td>Pryg Be Exp</td>
+            <td>Prayagraj</td>
+            <td>Bareilly</td>
+            <td>2AC</td>
+            <td>1400</td>
+            <td><input type="radio" name="train" id="train" value="PRYGBEEXP" onclick="selectRowData(this)"></td>
+        </tr>
+        <tr id="train_info">
+            <td>3.</td>
+            <td>12347</td>
+            <td>Tribeni Exp</td>
+            <td>Prayagraj</td>
+            <td>Bareilly</td>
+            <td>1AC</td>
+            <td>1800</td>
+            <td><input type="radio" name="train" id="train" value="TRIBENI" onclick="selectRowData(this)"></td>
+        </tr>
+    </table>
+    <button style="margin-top: 30px; padding: 10px 20px; border-radius: 5px; border: 1px solid black"
+        onclick="storeData()">Proceed</button>
+    <script src="script.js"></script>
+</body>
+
+</html>

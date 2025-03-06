@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Passenger details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            width: 30%;
+            margin: auto;
+            text-align: left;
+        }
+
+        label {
+            margin-top: 10px;
+        }
+
+        button {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body onload="trainDetails()">
+    <h1>Enter the passenger details</h1>
+    <div id="trainDetails">
+        <p style="display: inline; font-weight: bold;">Train Number:</p>
+        <p style="display: inline;"></p> <br>
+        <p style="display: inline; font-weight: bold;">Train Name:</p>
+        <p style="display: inline;"></p><br>
+        <p style="display: inline; font-weight: bold;">Source:</p>
+        <p style="display: inline;"></p><br>
+        <p style="display: inline; font-weight: bold;">Destination:</p>
+        <p style="display: inline;"></p><br>
+        <p style="display: inline; font-weight: bold;">Travel Class:</p>
+        <p style="display: inline;"></p><br>
+        <p style="display: inline; font-weight: bold;">Price:</p>
+        <p style="display: inline;"></p><br>
+    </div>
+    <form id="passengerDetails" style="margin-top: 40px;">
+        <label for="name">Passenger Name
+            <input type="text" name="name" id="name">
+        </label>
+        <label for="age">Age
+            <input type="text" name="age" id="age">
+        </label>
+        <label for="gender">Gender
+            <input type="text" name="gender" id="gender">
+        </label>
+        <button style="margin-top: 30px; padding: 10px 20px; border-radius: 5px; border: 1px solid black"
+            type="submit">Submit</button>
+    </form>
+    <script src="passenger.js"></script>
+</body>
+
+</html>
