@@ -1,0 +1,36 @@
+.transaction-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 70%;
+    margin: 0 auto;
+}
+
+.list {
+    list-style: none;
+    padding: 10px;
+    margin: 20px auto;
+    width: 100%;
+}
+
+.header-row {
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.header-row > th,
+.transaction > td {
+    min-width: 30%;
+    text-align: center;
+}
+
+.transaction {
+    display: flex;
+    justify-content: space-between;
+    background-color: #f8f9fa;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 5px;
+    box-shadow: 2px 2px 5px rgb(0, 0, 0, 0.2);
+}
