@@ -1,0 +1,45 @@
+/* App.css */
+
+.App {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+}
+
+.kanban-board {
+    display: flex;
+    justify-content: space-around;
+}
+
+.droppable-column {
+    width: 30%;
+    background-color: #f0f0f0;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.droppable-column h2 {
+    text-align: center;
+}
+
+.task {
+    background-color: #008cba;
+    color: white;
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 5px;
+    cursor: move;
+}
+
+.theme-toggle {
+    padding: 10px;
+    cursor: pointer;
+    border: none;
+    background-color: #333;
+    color: white;
+    border-radius: 5px;
+}
+
+.theme-toggle:hover {
+    background-color: #555;
+}
