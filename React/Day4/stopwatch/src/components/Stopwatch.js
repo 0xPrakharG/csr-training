@@ -19,6 +19,8 @@ const Stopwatch = () => {
             secondsInterval.current = setInterval(() => {
                 setSeconds((prevSecond) => prevSecond + 1);
             }, 1000);
+        } else {
+            clearInterval(secondsInterval.current);
         }
 
         return () => {
