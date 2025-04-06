@@ -1,87 +1,77 @@
 body {
     background-color: #f7f9fc;
-    font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
-    color: #111827;
+    font-family: "Inter", sans-serif;
+    color: #111111;
     margin: 0;
     padding: 0;
 }
 
 .board {
-    max-width: 1200px;
-    margin: 32px auto;
-    padding: 24px;
+    max-width: 80%;
+    margin: 30px auto 0;
+    padding: 25px 25px 0;
 }
 
 .form {
     background-color: #ffffff;
-    border-radius: 16px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-    padding: 24px;
-    margin-bottom: 24px;
+    border: 2px solid #6366f190;
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 25px;
     display: flex;
-    flex-wrap: wrap;
     align-items: center;
-    gap: 16px;
+    gap: 15px;
 }
 
 .name-label {
     font-weight: 600;
-    margin-right: 16px;
-    color: #111827;
+    color: #111111;
 }
 
 .input-box {
     flex: 1;
-    height: 48px;
     border: 2px solid #e5e7eb;
-    border-radius: 16px;
-    padding: 0 16px;
+    border-radius: 15px;
+    padding: 10px 15px;
     font-size: 16px;
-    transition: all 0.3s ease;
 }
 
 .input-box:focus {
     outline: none;
     border-color: #6366f1;
-    box-shadow: 0 0 0 3px #a5b4fc;
 }
 
 .form button {
     background-color: #6366f1;
     color: white;
     border: none;
-    border-radius: 16px;
-    padding: 12px 24px;
+    border-radius: 15px;
+    padding: 13px 25px;
     font-weight: 600;
     cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.form button:hover {
-    opacity: 0.9;
-    transform: translateY(-2px);
 }
 
 .todo-board {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 24px;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 25px;
 }
 
 .container {
     background-color: #ffffff;
-    border-radius: 16px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-    padding: 24px;
-    height: 100%;
+    border-radius: 15px;
+    border: 2px solid #6366f190;
+    padding: 20px;
+    height: calc(100vh - 240px);
+    overflow-y: scroll;
 }
 
 .container h3 {
     margin-top: 0;
     font-size: 18px;
     color: #111827;
-    padding-bottom: 16px;
-    border-bottom: 2px solid #f3f4f6;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #6366f190;
     font-weight: 600;
 }
 
@@ -90,37 +80,18 @@ body {
 .completed {
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 15px;
 }
 
 .todo-content {
     background-color: #f3f4f6;
-    border-radius: 16px;
-    padding: 16px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    border-radius: 15px;
+    border: 1px solid #11111120;
+    padding: 15px;
     margin: 0;
     display: flex;
     flex-direction: column;
-    gap: 16px;
-    transition: all 0.3s ease;
-    border-left: 4px solid transparent;
-}
-
-.ready .todo-content {
-    border-left-color: #f59e0b;
-}
-
-.in-progress .todo-content {
-    border-left-color: #6366f1;
-}
-
-.completed .todo-content {
-    border-left-color: #10b981;
-}
-
-.todo-content:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.08);
+    gap: 15px;
 }
 
 .todo-content span {
@@ -136,7 +107,6 @@ body {
     border-radius: 20px;
     cursor: pointer;
     font-weight: 500;
-    transition: all 0.3s ease;
     border: none;
 }
 
@@ -150,8 +120,14 @@ body {
     color: #6b7280;
 }
 
-.next-btn:hover,
-.prev-btn:hover {
-    opacity: 0.9;
-    transform: translateY(-1px);
+.empty-msg {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 70%;
+}
+
+.empty-msg p {
+    color: #969696;
 }

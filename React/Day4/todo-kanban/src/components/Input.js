@@ -1,7 +1,7 @@
 const Input = ({ newTask, setNewTask, addTask }) => {
     return (
         <form className="form">
-            <label className="name-label">Enter the task</label>
+            <label className="name-label">Enter Task Name</label>
             <input
                 type="text"
                 placeholder="Update UI, Create Submit Button"

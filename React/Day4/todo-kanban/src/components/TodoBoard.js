@@ -3,12 +3,12 @@ const TodoBoard = ({ moveToNext, moveToPrev, tasks }) => {
         <div className="todo-board">
             <div className="container">
                 <h3>Ready to Start</h3>
-                {tasks.ready && (
+                {tasks.ready.length > 0 ? (
                     <section className="ready">
                         {tasks.ready.map((readyTask) => (
                             <p key={readyTask.id} className="todo-content">
                                 {readyTask.content}
-                                <span>
+                                <span className="buttons">
                                     <button
                                         onClick={() => moveToNext(readyTask.id)}
                                         className="next-btn"
@@ -19,11 +19,15 @@ const TodoBoard = ({ moveToNext, moveToPrev, tasks }) => {
                             </p>
                         ))}
                     </section>
+                ) : (
+                    <div className="empty-msg">
+                        <p>There are no tasks to show</p>
+                    </div>
                 )}
             </div>
             <div className="container">
                 <h3>In Progress</h3>
-                {tasks.inProgress && (
+                {tasks.inProgress.length > 0 ? (
                     <section className="in-progress">
                         {tasks.inProgress.map((readyTask) => (
                             <p key={readyTask.id} className="todo-content">
@@ -45,11 +49,15 @@ const TodoBoard = ({ moveToNext, moveToPrev, tasks }) => {
                             </p>
                         ))}
                     </section>
+                ) : (
+                    <div className="empty-msg">
+                        <p>There are no tasks to show</p>
+                    </div>
                 )}
             </div>
             <div className="container">
                 <h3>Completed</h3>
-                {tasks.completed && (
+                {tasks.completed.length > 0 ? (
                     <section className="completed">
                         {tasks.completed.map((readyTask) => (
                             <p key={readyTask.id} className="todo-content">
@@ -65,6 +73,10 @@ const TodoBoard = ({ moveToNext, moveToPrev, tasks }) => {
                             </p>
                         ))}
                     </section>
+                ) : (
+                    <div className="empty-msg">
+                        <p>There are no tasks to show</p>
+                    </div>
                 )}
             </div>
         </div>
