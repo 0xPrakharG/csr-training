@@ -1,4 +1,4 @@
-const TodoBoard = ({ moveToNext, moveToPrev, tasks }) => {
+const TodoBoard = ({ moveToNext, moveToPrev, tasks, deleteTask, editTask }) => {
     return (
         <div className="todo-board">
             <div className="container">
@@ -8,6 +8,14 @@ const TodoBoard = ({ moveToNext, moveToPrev, tasks }) => {
                         {tasks.ready.map((readyTask) => (
                             <p key={readyTask.id} className="todo-content">
                                 {readyTask.content}
+                                <button
+                                    onClick={() => deleteTask(readyTask.id)}
+                                >
+                                    X
+                                </button>
+                                <button onClick={() => editTask(readyTask.id)}>
+                                    edit
+                                </button>
                                 <span className="buttons">
                                     <button
                                         onClick={() => moveToNext(readyTask.id)}
@@ -32,6 +40,14 @@ const TodoBoard = ({ moveToNext, moveToPrev, tasks }) => {
                         {tasks.inProgress.map((readyTask) => (
                             <p key={readyTask.id} className="todo-content">
                                 {readyTask.content}
+                                <button
+                                    onClick={() => deleteTask(readyTask.id)}
+                                >
+                                    X
+                                </button>
+                                <button onClick={() => editTask(readyTask.id)}>
+                                    edit
+                                </button>
                                 <span>
                                     <button
                                         onClick={() => moveToPrev(readyTask.id)}
@@ -62,6 +78,14 @@ const TodoBoard = ({ moveToNext, moveToPrev, tasks }) => {
                         {tasks.completed.map((readyTask) => (
                             <p key={readyTask.id} className="todo-content">
                                 {readyTask.content}
+                                <button
+                                    onClick={() => deleteTask(readyTask.id)}
+                                >
+                                    X
+                                </button>
+                                <button onClick={() => editTask(readyTask.id)}>
+                                    edit
+                                </button>
                                 <span>
                                     <button
                                         onClick={() => moveToPrev(readyTask.id)}

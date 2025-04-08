@@ -1,4 +1,4 @@
-const Input = ({ newTask, setNewTask, addTask }) => {
+const Input = ({ newTask, setNewTask, addTask, isEditing, editThisTask }) => {
     return (
         <form className="form">
             <label className="name-label">Enter Task Name</label>
@@ -9,7 +9,11 @@ const Input = ({ newTask, setNewTask, addTask }) => {
                 onChange={(e) => setNewTask(e.target.value)}
                 className="input-box"
             />
-            <button onClick={addTask}>Add Task</button>
+            {!!isEditing ? (
+                <button onClick={editThisTask}>Edit Task</button>
+            ) : (
+                <button onClick={addTask}>Add Task</button>
+            )}
         </form>
     );
 };

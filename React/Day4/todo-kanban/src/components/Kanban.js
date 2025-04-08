@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Input from "./Input";
 import TodoBoard from "./TodoBoard";
 
@@ -10,6 +10,17 @@ const Kanban = () => {
         completed: [],
     });
     const [idCounter, setIdCounter] = useState(0);
+    const [isEditing, setIsEditing] = useState(false);
+    const [editingTaskId, setEditingTaskId] = useState(null);
+    const [editingTaskColumn, setEditingTaskColumn] = useState(null);
+
+    const getTaskKey = (taskId) => {
+        for (const key in tasks) {
+            if (tasks[key].find((task) => task.id === taskId)) {
+                return key;
+            }
+        }
+    };
 
     const addTask = (e) => {
         e.preventDefault();
@@ -23,12 +34,45 @@ const Kanban = () => {
         setIdCounter(() => idCounter + 1);
     };
 
-    const getTaskKey = (taskId) => {
-        for (const key in tasks) {
-            if (tasks[key].find((task) => task.id === taskId)) {
-                return key;
-            }
-        }
+    const deleteTask = (taskId) => {
+        let sourceState = getTaskKey(taskId);
+        const taskToDelete = tasks[sourceState].filter(
+            (task) => task.id !== taskId
+        );
+        setTasks({ ...tasks, [sourceState]: taskToDelete });
+    };
+
+    const editTask = (taskId) => {
+        setIsEditing(true);
+        let sourceState = getTaskKey(taskId);
+        const taskToEdit = tasks[sourceState].find(
+            (task) => task.id === taskId
+        );
+        setTasks({
+            ...tasks,
+            [sourceState]: tasks[sourceState].filter(
+                (task) => task.id !== taskId
+            ),
+        });
+        setNewTask(taskToEdit.content);
+        setEditingTaskColumn(sourceState);
+        setEditingTaskId(taskId);
+    };
+
+    const editThisTask = (e) => {
+        e.preventDefault();
+        const updatedTask = {
+            id: editingTaskId,
+            content: newTask,
+        };
+        setTasks({
+            ...tasks,
+            [editingTaskColumn]: [...tasks[editingTaskColumn], updatedTask],
+        });
+        setIsEditing(false);
+        setEditingTaskId(null);
+        setEditingTaskColumn(null);
+        setNewTask("");
     };
 
     const moveToNext = (taskId) => {
@@ -74,17 +118,25 @@ const Kanban = () => {
         });
     };
 
+    useEffect(() => {
+        console.log(tasks);
+    }, [tasks]);
+
     return (
         <div className="board">
             <Input
                 newTask={newTask}
                 setNewTask={setNewTask}
                 addTask={addTask}
+                isEditing={isEditing}
+                editThisTask={editThisTask}
             />
             <TodoBoard
                 tasks={tasks}
                 moveToNext={moveToNext}
                 moveToPrev={moveToPrev}
+                deleteTask={deleteTask}
+                editTask={editTask}
             />
         </div>
     );
