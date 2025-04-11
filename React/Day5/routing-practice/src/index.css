@@ -1,0 +1,46 @@
+.login-form {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid gray;
+    padding: 50px 30px;
+    border-radius: 10px;
+    width: 20%;
+}
+
+.form label {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    width: 100%;
+}
+
+.form label input {
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #121212;
+}
+
+.form label input:focus {
+    outline: none;
+}
+
+.form a {
+    background: gold;
+    padding: 8px 50px;
+    border-radius: 5px;
+    color: #121212;
+    text-decoration: none;
+    border: 1px solid #121212;
+    margin-top: 10px;
+}
