@@ -1,0 +1,158 @@
+/* Simple and Sober Recipe App Styling */
+
+/* Main containers */
+.table-container {
+    padding: 15px;
+    margin: 15px 0;
+    background-color: #fafafa;
+}
+
+/* Table styling */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 15px;
+    border: 1px solid #e0e0e0;
+}
+
+.table-row {
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.table-header {
+    background-color: #f2f2f2;
+    color: #333;
+    padding: 10px;
+    text-align: left;
+    font-weight: 500;
+    border: 1px solid #e0e0e0;
+}
+
+.table-data {
+    padding: 8px 10px;
+    border: 1px solid #e0e0e0;
+    color: #444;
+}
+
+/* List item styling */
+.table-data ul {
+    margin: 0;
+    padding-left: 20px;
+    list-style-type: disc;
+}
+
+.table-data li {
+    padding: 2px 0;
+    font-size: 14px;
+    line-height: 1.4;
+    color: #555;
+}
+
+/* Button styling */
+.add-btn,
+.edit-btn,
+.del-btn,
+.update-btn {
+    padding: 6px 12px;
+    border-radius: 3px;
+    border: 1px solid #ddd;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.2s;
+}
+
+.add-btn {
+    background-color: #f8f8f8;
+    color: #444;
+    margin-bottom: 12px;
+}
+
+.add-btn:hover {
+    background-color: #efefef;
+}
+
+/* Action buttons in table */
+.table-data .edit-btn,
+.table-data .del-btn {
+    margin: 2px;
+    padding: 4px 10px;
+    font-size: 13px;
+    background-color: #fff;
+}
+
+.table-data .edit-btn {
+    color: #1976d2;
+    border-color: #1976d2;
+    margin-right: 5px;
+}
+
+.table-data .edit-btn:hover {
+    background-color: #e3f2fd;
+}
+
+.table-data .del-btn {
+    color: #d32f2f;
+    border-color: #d32f2f;
+}
+
+.table-data .del-btn:hover {
+    background-color: #ffebee;
+}
+
+.update-btn {
+    background-color: #f8f8f8;
+    color: #444;
+}
+
+.update-btn:hover {
+    background-color: #efefef;
+}
+
+/* Add container */
+.add-container {
+    display: flex;
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #e0e0e0;
+    background-color: #f8f8f8;
+}
+
+.add-input,
+.edit-input {
+    padding: 6px 10px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    margin-right: 8px;
+    flex-grow: 1;
+}
+
+.add-input:focus,
+.edit-input:focus {
+    outline: none;
+    border-color: #bbb;
+}
+
+/* Edit table */
+.edit-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+    border: 1px solid #e0e0e0;
+}
+
+.edit-table-row {
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.edit-table-header {
+    background-color: #f2f2f2;
+    color: #333;
+    padding: 8px 10px;
+    text-align: left;
+    font-weight: 500;
+}
+
+.edit-table-data {
+    padding: 8px 10px;
+    border: 1px solid #e0e0e0;
+}
