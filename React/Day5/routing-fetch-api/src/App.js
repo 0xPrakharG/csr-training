@@ -4,6 +4,7 @@ import Login from "./pages/Login";
 import HomePage from "./pages/HomePage";
 import ProtectedRoute from "./ProtectedRoute";
 import ProfilePage from "./pages/ProfilePage";
+import ProductsPage from "./pages/ProductsPage";
 
 function App() {
     const [accessToken, setAccessToken] = useState("");
@@ -25,6 +26,14 @@ function App() {
                     element={
                         <ProtectedRoute accessToken={accessToken}>
                             <ProfilePage accessToken={accessToken} />
+                        </ProtectedRoute>
+                    }
+                />
+                <Route
+                    path="/products"
+                    element={
+                        <ProtectedRoute accessToken={accessToken}>
+                            <ProductsPage />
                         </ProtectedRoute>
                     }
                 />

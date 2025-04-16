@@ -1,11 +1,11 @@
-import { useEffect } from "react";
+// import { useEffect } from "react";
 import UserTableHeader from "./UserTableHeader";
 import UserTableRow from "./UserTableRow";
 
 const UserTable = ({ usersList, keys, formatData, onEdit, onDelete }) => {
-    useEffect(() => {
-        console.log(usersList);
-    }, [usersList]);
+    // useEffect(() => {
+    //     console.log(usersList);
+    // }, [usersList]);
 
     if (usersList && usersList.length === 0) return <p>Loading users...</p>;
 

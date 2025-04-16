@@ -6,6 +6,7 @@ import PostTagsTable from "./PostTagsTable";
 import PostTagList from "./PostTagList";
 
 const UsersList = ({ keys, usersList, formatData }) => {
+    const [allUsers, setAllUsers] = useState(usersList);
     const [addingUser, setAddingUser] = useState(false);
     const [editing, setEditing] = useState(false);
     const [userId, setUserId] = useState("");
@@ -23,7 +24,6 @@ const UsersList = ({ keys, usersList, formatData }) => {
 
     const [sortKey, setSortKey] = useState("");
     const [sortOrder, setSortOrder] = useState("asc");
-    const [allUsers, setAllUsers] = useState(usersList);
 
     const [limit, setLimit] = useState(30);
     const [skip, setSkip] = useState(0);
@@ -210,7 +210,6 @@ const UsersList = ({ keys, usersList, formatData }) => {
                         </button>
                     </div>
                 </div>
-
                 {queryResults.length > 0 && (
                     <div className="query-results">
                         <h3>Name Search Results</h3>
@@ -322,6 +321,7 @@ const UsersList = ({ keys, usersList, formatData }) => {
                 <EditUserForm
                     userId={userId}
                     initialName={userLastName}
+                    onCancel={() => setEditing(false)}
                     onUpdate={editUser}
                 />
             )}

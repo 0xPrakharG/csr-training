@@ -1,19 +1,19 @@
 import { useEffect, useState } from "react";
-import UsersList from "./UsersList";
+import ProductsList from "./ProductsList";
 
-const AllUsersList = () => {
-    const [usersList, setUsersList] = useState();
+const AllProductsList = () => {
+    const [productsList, setProductsList] = useState();
     const [keys, setKeys] = useState([]);
     const [loading, setLoading] = useState(true);
 
     const getAllUsers = async () => {
         try {
-            const res = await fetch("https://dummyjson.com/users");
+            const res = await fetch("https://dummyjson.com/products");
 
             const data = await res.json();
             if (data) {
-                setUsersList(data.users);
-                setKeys(Object.keys(data?.users[0]));
+                setProductsList(data.products);
+                setKeys(Object.keys(data?.products[0]));
             }
         } catch (error) {
             console.log(error);
@@ -52,12 +52,12 @@ const AllUsersList = () => {
     };
 
     return (
-        <div>
+        <div className="products-list">
             {loading ? (
-                <div className="loader">Loading User List...</div>
+                <div className="loader">Loading Products List...</div>
             ) : (
-                <UsersList
-                    usersList={usersList}
+                <ProductsList
+                    productsList={productsList}
                     keys={keys}
                     formatData={formatData}
                 />
@@ -66,4 +66,4 @@ const AllUsersList = () => {
     );
 };
 
-export default AllUsersList;
+export default AllProductsList;

@@ -64,7 +64,7 @@ const ProfilePage = ({ accessToken }) => {
         <div>
             <Navbar />
             {loading ? (
-                <div className="loader">Loading user profile...</div>
+                <div className="loader">Loading User Profile...</div>
             ) : (
                 <div className="profile-container">
                     <h2>User Profile</h2>

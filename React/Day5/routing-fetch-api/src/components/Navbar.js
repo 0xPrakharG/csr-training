@@ -23,7 +23,9 @@ const Navbar = () => {
         <nav className="navbar">
             <h2 className="nav-header">{getHeaderText()}</h2>
             <div className="nav-links">
-                <Link className="nav-link">Products</Link>
+                <Link className="nav-link" to="/products">
+                    Products
+                </Link>
                 <Link className="nav-link">Cart</Link>
                 <Link className="nav-link" to="/profile">
                     Profile
