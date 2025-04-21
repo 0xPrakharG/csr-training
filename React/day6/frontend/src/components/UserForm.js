@@ -41,8 +41,17 @@ const UserForm = ({ selectedUser, onSubmitSuccess }) => {
         }
         if (!formData.username.trim())
             newErrors.username = "Username is required";
-        if (formData.password && formData.password.length < 6) {
-            newErrors.password = "Password must be at least 6 characters";
+        if (!formData.password.trim()) {
+            newErrors.password = "Password is required";
+        } else if (formData.password.length < 8) {
+            newErrors.password = "Password must be at least 8 characters";
+        } else if (
+            !/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]).+$/.test(
+                formData.password
+            )
+        ) {
+            newErrors.password =
+                "Password must contain at least 1 uppercase letter, 1 lowercase letter, 1 number, and 1 special character";
         }
         if (formData.age && (isNaN(formData.age) || formData.age < 0)) {
             newErrors.age = "Age must be a positive number";

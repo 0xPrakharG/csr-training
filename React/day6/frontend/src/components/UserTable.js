@@ -84,27 +84,27 @@ const UserTable = ({ onEdit, onDelete, refresh }) => {
             <div className="table-header">
                 <h2 className="table-title">User List</h2>
                 <div className="table-actions">
-                        <div className="pagination-controls">
-                            <button
-                                onClick={goToPreviousPage}
-                                disabled={currentPage === 1}
-                                className="pagination-btn"
-                                title="Previous page"
-                            >
-                                ◀
-                            </button>
-                            <span className="page-indicator">
-                                Page {currentPage} of {totalPages}
-                            </span>
-                            <button
-                                onClick={goToNextPage}
-                                disabled={currentPage === totalPages}
-                                className="pagination-btn"
-                                title="Next page"
-                            >
-                                ▶
-                            </button>
-                        </div>
+                    <div className="pagination-controls">
+                        <button
+                            onClick={goToPreviousPage}
+                            disabled={currentPage === 1}
+                            className="pagination-btn"
+                            title="Previous page"
+                        >
+                            ◀
+                        </button>
+                        <span className="page-indicator">
+                            Page {currentPage} of {totalPages}
+                        </span>
+                        <button
+                            onClick={goToNextPage}
+                            disabled={currentPage === totalPages}
+                            className="pagination-btn"
+                            title="Next page"
+                        >
+                            ▶
+                        </button>
+                    </div>
                     <button
                         onClick={fetchUsers}
                         className="btn btn-secondary refresh-btn"
