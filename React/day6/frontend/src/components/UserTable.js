@@ -19,7 +19,7 @@ const UserTable = ({ onEdit, onDelete, refresh }) => {
 
             const data = await res.json();
             setUsers(data.data);
-            setTotalUsers(data.length);
+            setTotalUsers(data.data.length);
         } catch (error) {
             console.error("Error fetching users:", error);
             toast.error("Failed to load users.");
@@ -172,8 +172,8 @@ const UserTable = ({ onEdit, onDelete, refresh }) => {
             <div className="table-footer">
                 {totalUsers > 0 ? (
                     <p>
-                        Showing {indexOfFirstUser + 1} to{" "}
-                        {Math.min(indexOfLastUser, totalUsers)} of {totalUsers}{" "}
+                        Showing ({indexOfFirstUser + 1} to{" "}
+                        {Math.min(indexOfLastUser, totalUsers)}) of {totalUsers}{" "}
                         users
                     </p>
                 ) : (
