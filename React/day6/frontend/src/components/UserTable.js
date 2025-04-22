@@ -6,19 +6,19 @@ const UserTable = ({ onEdit, onDelete, refresh }) => {
     const [isLoading, setIsLoading] = useState(true);
     const [currentPage, setCurrentPage] = useState(1);
     const [totalUsers, setTotalUsers] = useState(0);
-    const usersPerPage = 15;
+    const usersPerPage = 10;
 
     const fetchUsers = async () => {
         setIsLoading(true);
         try {
-            const res = await fetch("http://localhost:3008/users");
+            const res = await fetch("http://localhost:3008/");
 
             if (!res.ok) {
                 throw new Error("Failed to fetch users");
             }
 
             const data = await res.json();
-            setUsers(data);
+            setUsers(data.data);
             setTotalUsers(data.length);
         } catch (error) {
             console.error("Error fetching users:", error);
@@ -32,8 +32,8 @@ const UserTable = ({ onEdit, onDelete, refresh }) => {
         fetchUsers();
     }, [refresh]);
 
-    const handleDeleteConfirm = (userId, userName) => {
-        if (window.confirm(`Are you sure you want to delete ${userName}?`)) {
+    const handleDeleteConfirm = (userId, firstName) => {
+        if (window.confirm(`Are you sure you want to delete ${firstName}?`)) {
             onDelete(userId);
         }
     };
@@ -69,14 +69,16 @@ const UserTable = ({ onEdit, onDelete, refresh }) => {
     }
 
     const columns = [
-        { key: "firstName", label: "First Name" },
-        { key: "lastName", label: "Last Name" },
-        { key: "email", label: "Email" },
+        { key: "id", label: "Id" },
+        { key: "firstname", label: "First Name" },
+        { key: "lastname", label: "Last Name" },
+        { key: "maidenname", label: "Maiden Name" },
         { key: "age", label: "Age" },
-        { key: "username", label: "Username" },
         { key: "gender", label: "Gender" },
-        { key: "phone", label: "Phone" },
-        { key: "birthDate", label: "Birth Date" },
+        { key: "email", label: "Email" },
+        // { key: "username", label: "Username" },
+        // { key: "phone", label: "Phone" },
+        // { key: "birthDate", label: "Birth Date" },
     ];
 
     return (
@@ -151,8 +153,7 @@ const UserTable = ({ onEdit, onDelete, refresh }) => {
                                             onClick={() =>
                                                 handleDeleteConfirm(
                                                     user.id,
-                                                    user.username ||
-                                                        `${user.firstName} ${user.lastName}`
+                                                    user.firstname
                                                 )
                                             }
                                             className="btn-icon delete"

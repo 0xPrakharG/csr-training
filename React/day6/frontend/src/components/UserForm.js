@@ -3,16 +3,16 @@ import { toast } from "react-toastify";
 
 const UserForm = ({ selectedUser, onSubmitSuccess }) => {
     const initialFormState = {
-        firstName: "",
-        lastName: "",
-        maidenName: "",
+        firstname: "",
+        lastname: "",
+        maidenname: "",
         age: "",
         gender: "",
         email: "",
-        phone: "",
-        username: "",
-        password: "",
-        birthDate: "",
+        // phone: "",
+        // username: "",
+        // password: "",
+        // birthDate: "",
     };
 
     const [formData, setFormData] = useState(initialFormState);
@@ -30,29 +30,29 @@ const UserForm = ({ selectedUser, onSubmitSuccess }) => {
     const validateForm = () => {
         const newErrors = {};
 
-        if (!formData.firstName.trim())
-            newErrors.firstName = "First name is required";
-        if (!formData.lastName.trim())
-            newErrors.lastName = "Last name is required";
+        if (!formData.firstname.trim())
+            newErrors.firstname = "First name is required";
+        if (!formData.lastname.trim())
+            newErrors.lastname = "Last name is required";
         if (!formData.email.trim()) {
             newErrors.email = "Email is required";
         } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
             newErrors.email = "Email is invalid";
         }
-        if (!formData.username.trim())
-            newErrors.username = "Username is required";
-        if (!formData.password.trim()) {
-            newErrors.password = "Password is required";
-        } else if (formData.password.length < 8) {
-            newErrors.password = "Password must be at least 8 characters";
-        } else if (
-            !/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]).+$/.test(
-                formData.password
-            )
-        ) {
-            newErrors.password =
-                "Password must contain at least 1 uppercase letter, 1 lowercase letter, 1 number, and 1 special character";
-        }
+        // if (!formData.username.trim())
+        //     newErrors.username = "Username is required";
+        // if (!formData.password.trim()) {
+        //     newErrors.password = "Password is required";
+        // } else if (formData.password.length < 8) {
+        //     newErrors.password = "Password must be at least 8 characters";
+        // } else if (
+        //     !/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]).+$/.test(
+        //         formData.password
+        //     )
+        // ) {
+        //     newErrors.password =
+        //         "Password must contain at least 1 uppercase letter, 1 lowercase letter, 1 number, and 1 special character";
+        // }
         if (formData.age && (isNaN(formData.age) || formData.age < 0)) {
             newErrors.age = "Age must be a positive number";
         }
@@ -78,8 +78,8 @@ const UserForm = ({ selectedUser, onSubmitSuccess }) => {
         setIsSubmitting(true);
 
         const url = selectedUser
-            ? `http://localhost:3008/users/${selectedUser.id}`
-            : "http://localhost:3008/users";
+            ? `http://localhost:3008/${selectedUser.id}`
+            : "http://localhost:3008/";
 
         const method = selectedUser ? "PUT" : "POST";
 
@@ -123,48 +123,48 @@ const UserForm = ({ selectedUser, onSubmitSuccess }) => {
 
                 <div>
                     <div className="form-group">
-                        <label htmlFor="firstName">First Name</label>
+                        <label htmlFor="firstname">First Name</label>
                         <input
-                            id="firstName"
-                            name="firstName"
+                            id="firstname"
+                            name="firstname"
                             type="text"
-                            value={formData.firstName}
+                            value={formData.firstname}
                             onChange={handleChange}
                             placeholder="Enter First Name"
-                            className={errors.firstName ? "input-error" : ""}
+                            className={errors.firstname ? "input-error" : ""}
                         />
-                        {errors.firstName && (
+                        {errors.firstname && (
                             <span className="error-message">
-                                {errors.firstName}
+                                {errors.firstname}
                             </span>
                         )}
                     </div>
 
                     <div className="form-group">
-                        <label htmlFor="lastName">Last Name</label>
+                        <label htmlFor="lastname">Last Name</label>
                         <input
-                            id="lastName"
-                            name="lastName"
+                            id="lastname"
+                            name="lastname"
                             type="text"
-                            value={formData.lastName}
+                            value={formData.lastname}
                             onChange={handleChange}
                             placeholder="Enter Last Name"
-                            className={errors.lastName ? "input-error" : ""}
+                            className={errors.lastname ? "input-error" : ""}
                         />
-                        {errors.lastName && (
+                        {errors.lastname && (
                             <span className="error-message">
-                                {errors.lastName}
+                                {errors.lastname}
                             </span>
                         )}
                     </div>
 
                     <div className="form-group">
-                        <label htmlFor="maidenName">Maiden Name</label>
+                        <label htmlFor="maidenname">Maiden Name</label>
                         <input
-                            id="maidenName"
-                            name="maidenName"
+                            id="maidenname"
+                            name="maidenname"
                             type="text"
-                            value={formData.maidenName}
+                            value={formData.maidenname}
                             onChange={handleChange}
                             placeholder="Enter Maiden Name"
                         />
@@ -218,7 +218,7 @@ const UserForm = ({ selectedUser, onSubmitSuccess }) => {
                         )}
                     </div>
 
-                    <div className="form-group">
+                    {/* <div className="form-group">
                         <label htmlFor="phone">Phone</label>
                         <input
                             id="phone"
@@ -275,7 +275,7 @@ const UserForm = ({ selectedUser, onSubmitSuccess }) => {
                             value={formData.birthDate}
                             onChange={handleChange}
                         />
-                    </div>
+                    </div> */}
                 </div>
 
                 <div className="form-actions">

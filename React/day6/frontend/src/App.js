@@ -12,7 +12,7 @@ function App() {
     const handleDelete = async (id) => {
         setIsDeleting(true);
         try {
-            const response = await fetch(`http://localhost:3008/users/${id}`, {
+            const response = await fetch(`http://localhost:3008/${id}`, {
                 method: "DELETE",
             });
 
