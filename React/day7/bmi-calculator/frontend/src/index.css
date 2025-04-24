@@ -1,0 +1,393 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f5f7fa;
+}
+
+.App {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 40px;
+    padding: 20px;
+    background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+    color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+main {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 30px;
+}
+
+section {
+    background: white;
+    border-radius: 8px;
+    padding: 25px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
+    margin: 0 auto;
+}
+
+h2 {
+    color: #2575fc;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #f0f0f0;
+}
+
+h3 {
+    color: #444;
+    margin: 15px 0;
+}
+
+.bmi-form {
+    width: 60vw;
+}
+
+.bmi-result {
+    width: 100%;
+}
+
+.bmi-scale {
+    width: 100%;
+}
+
+.results-section {
+    width: 100%;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+input,
+select {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    transition: border-color 0.3s;
+}
+
+input:focus,
+select:focus {
+    border-color: #2575fc;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(37, 117, 252, 0.2);
+}
+
+button {
+    background: #2575fc;
+    color: white;
+    border: none;
+    padding: 14px 20px;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background: #1a68e5;
+}
+
+button:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+}
+
+.error-message {
+    color: #e74c3c;
+    margin-top: 15px;
+    font-size: 14px;
+}
+
+/* Results styles */
+.bmi-result {
+    text-align: center;
+}
+
+.bmi-value-display {
+    margin-bottom: 20px;
+}
+
+.bmi-value-display .value {
+    font-size: 3rem;
+    font-weight: bold;
+    color: #2575fc;
+    display: block;
+}
+
+.bmi-value-display .category {
+    font-size: 1.5rem;
+    font-weight: 500;
+    display: block;
+    margin-top: 5px;
+}
+
+.category.underweight {
+    color: #3498db;
+}
+.category.healthy {
+    color: #2ecc71;
+}
+.category.overweight {
+    color: #f39c12;
+}
+.category.obese {
+    color: #e74c3c;
+}
+
+.result-details {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin: 20px 0;
+}
+
+.bmi-explanation {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 6px;
+    margin-top: 20px;
+    text-align: left;
+}
+
+/* BMI Scale styles */
+.bmi-scale {
+    margin: 30px 0;
+}
+
+.scale-container {
+    position: relative;
+    height: 40px;
+    margin-bottom: 5px;
+}
+
+.scale {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    border-radius: 4px;
+    overflow: hidden;
+    border-color: #333;
+}
+
+.section {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 500;
+    flex: 1;
+}
+
+.section.underweight {
+    background-color: #3498db;
+}
+.section.healthy {
+    background-color: #2ecc71;
+}
+.section.overweight {
+    background-color: #f39c12;
+}
+.section.obese {
+    background-color: #e74c3c;
+}
+
+.marker {
+    position: absolute;
+    top: -25px;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.arrow {
+    font-size: 24px;
+    color: #333;
+    line-height: 1;
+}
+
+.bmi-value {
+    background: #333;
+    color: white;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+.scale-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    color: #666;
+}
+
+.history-section {
+    width: 100%;
+}
+
+.history-chart {
+    margin: 20px 0;
+}
+
+/* .recharts-legend-wrapper {
+    bottom: -30px !important;
+} */
+
+.bar.underweight {
+    background-color: #3498db;
+}
+.bar.healthy {
+    background-color: #2ecc71;
+}
+.bar.overweight {
+    background-color: #f39c12;
+}
+.bar.obese {
+    background-color: #e74c3c;
+}
+
+.recharts-responsive-container {
+    width: 60% !important;
+    margin: 0 auto !important;
+}
+
+.no-data {
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #888;
+}
+
+/* History table */
+.history-table {
+    margin-top: 40px;
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th,
+td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #f5f7fa;
+    font-weight: 600;
+}
+
+tr.underweight td:nth-child(5) {
+    color: #3498db;
+}
+tr.healthy td:nth-child(5) {
+    color: #2ecc71;
+}
+tr.overweight td:nth-child(5) {
+    color: #f39c12;
+}
+tr.obese td:nth-child(5) {
+    color: #e74c3c;
+}
+
+/* Age trends */
+.trends-section {
+    width: 100%;
+}
+
+.age-trends {
+    margin: 20px 0;
+}
+
+.trends-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+    height: 250px;
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 6px;
+}
+
+.trend-bar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 60px;
+}
+
+.trend-value {
+    width: 100%;
+    background: linear-gradient(to top, #3498db, #e74c3c);
+    border-radius: 4px 4px 0 0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 5px;
+}
+
+.trend-value span {
+    background: #333;
+    color: white;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.trend-label {
+    margin-top: 10px;
+    font-weight: 500;
+    text-align: center;
+}
+
+.trend-count {
+    margin-top: 5px;
+    font-size: 11px;
+    color: #666;
+}
+
+/* Footer */
+footer {
+    margin-top: 50px;
+    text-align: center;
+    color: #666;
+    font-size: 14px;
+    padding: 20px;
+}
