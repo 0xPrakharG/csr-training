@@ -1,9 +1,10 @@
 const express = require("express");
 const cors = require("cors");
 const jwt = require("jsonwebtoken");
+const verifyToken = require("./middleLayer/auth");
 const app = express();
-
-const key = "myjwttoken";
+require("dotenv").config();
+const secret_key = process.env.SECRET_KEY;
 
 const PORT = 3008;
 
@@ -12,15 +13,35 @@ app.use(express.json());
 
 app.post("/sign", (req, res) => {
     const { username, password } = req.body;
-    const token = jwt.sign({ username, password }, key, {
+    const token = jwt.sign({ username, password }, secret_key, {
         expiresIn: "2h",
     });
-    res.send({ user: username, password: password, auth: token });
+    try {
+        if (token) {
+            res.send({
+                status: true,
+                message: "User Logged In",
+                data: [{ user: username, password: password, auth: token }],
+            });
+        } else {
+            res.send("Ran into a error at post");
+        }
+    } catch (error) {
+        res.send({ status: false, message: error.message, data: [] });
+    }
 });
 
-app.get("/sign", (req, res) => {
-    console.log(req);
-    res.send({ user: "Prakhargoyal" });
+app.get("/sign", verifyToken, (req, res) => {
+    res.json({
+        status: true,
+        message: "User Verified",
+        data: [
+            {
+                user: req.user.username,
+                password: req.user.password,
+            },
+        ],
+    });
 });
 
 app.listen(PORT, () => {
