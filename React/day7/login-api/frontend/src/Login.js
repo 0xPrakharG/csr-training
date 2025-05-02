@@ -5,8 +5,10 @@ const Login = () => {
     const navigate = useNavigate();
     const [formData, setFormData] = useState({
         username: "",
+        email: "",
         password: "",
     });
+    const [error, setError] = useState("");
     const [disabled, setDisabled] = useState(true);
 
     const signin = async (e) => {
@@ -19,13 +21,16 @@ const Login = () => {
 
         const data = await response.json();
 
-        if (response.ok) {
+        if (response.ok && data.status) {
             localStorage.setItem("token", data.data[0].auth);
             setFormData({
                 username: "",
+                email: "",
                 password: "",
             });
             navigate("/", { replace: true });
+        } else {
+            setError(data.message);
         }
     };
 
@@ -68,6 +73,17 @@ const Login = () => {
                             />
                         </div>
                         <div className="form-group">
+                            <label htmlFor="email">Email</label>
+                            <input
+                                id="email"
+                                type="email"
+                                name="email"
+                                placeholder="Enter your Email"
+                                value={formData.email}
+                                onChange={handleChange}
+                            />
+                        </div>
+                        <div className="form-group">
                             <label htmlFor="password">Password</label>
                             <input
                                 id="password"
@@ -78,6 +94,7 @@ const Login = () => {
                                 onChange={handleChange}
                             />
                         </div>
+                        {error && <p>{error}</p>}
                         <button
                             type="submit"
                             className="login-button"
