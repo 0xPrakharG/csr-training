@@ -4,7 +4,7 @@ import useAuth from "../hooks/useAuth";
 
 const ProfileView = () => {
     const navigate = useNavigate();
-    const { user, error: authError } = useAuth(navigate);
+    const { error: authError } = useAuth(navigate);
 
     const [profile, setProfile] = useState(null);
     const [loading, setLoading] = useState(true);

@@ -4,7 +4,6 @@ import ProtectedRoute from "./ProtectedRoute";
 import Login from "./Login";
 import Home from "./Home";
 import About from "./About";
-import UserData from "./UserData";
 import Layout from "./components/Layout";
 import ProfileView from "./components/ProfileView";
 import ProfileForm from "./components/ProfileForm";

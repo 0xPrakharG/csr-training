@@ -4,7 +4,7 @@ import useAuth from "../hooks/useAuth";
 
 const ProfileForm = () => {
     const navigate = useNavigate();
-    const { user, error: authError } = useAuth(navigate);
+    const { error: authError } = useAuth(navigate);
 
     const [formData, setFormData] = useState({
         name: "",
@@ -23,7 +23,6 @@ const ProfileForm = () => {
     const [error, setError] = useState("");
     const [success, setSuccess] = useState("");
 
-    // Fetch countries on component mount
     useEffect(() => {
         const fetchCountries = async () => {
             try {
@@ -42,7 +41,6 @@ const ProfileForm = () => {
         fetchCountries();
     }, []);
 
-    // Fetch user profile data after countries are loaded
     useEffect(() => {
         const fetchUserProfile = async () => {
             if (countries.length === 0) return;
@@ -63,7 +61,6 @@ const ProfileForm = () => {
                 const data = await response.json();
 
                 if (data.status && data.data) {
-                    // Find the country ID based on country name
                     const foundCountry = countries.find(
                         (country) => country.name === data.data.country
                     );
@@ -71,7 +68,6 @@ const ProfileForm = () => {
                     if (foundCountry) {
                         const countryId = parseInt(foundCountry.id);
 
-                        // First set country_id
                         setFormData((prev) => ({
                             ...prev,
                             name: data.data.name || "",
@@ -81,7 +77,6 @@ const ProfileForm = () => {
                             address: data.data.address || "",
                         }));
 
-                        // Fetch states for this country
                         const statesResponse = await fetch(
                             `http://localhost:3008/states?country_id=${countryId}`
                         );
@@ -91,7 +86,6 @@ const ProfileForm = () => {
                             const statesList = statesData.data[0];
                             setStates(statesList);
 
-                            // Find the state ID based on state name
                             const foundState = statesList.find(
                                 (state) => state.name === data.data.state
                             );
@@ -99,13 +93,11 @@ const ProfileForm = () => {
                             if (foundState) {
                                 const stateId = parseInt(foundState.id);
 
-                                // Set state_id
                                 setFormData((prev) => ({
                                     ...prev,
                                     state_id: stateId,
                                 }));
 
-                                // Fetch cities for this state
                                 const citiesResponse = await fetch(
                                     `http://localhost:3008/cities?state_id=${stateId}`
                                 );
@@ -115,13 +107,11 @@ const ProfileForm = () => {
                                     const citiesList = citiesData.data[0];
                                     setCities(citiesList);
 
-                                    // Find the city ID based on city name
                                     const foundCity = citiesList.find(
                                         (city) => city.name === data.data.city
                                     );
 
                                     if (foundCity) {
-                                        // Set city_id
                                         setFormData((prev) => ({
                                             ...prev,
                                             city_id: parseInt(foundCity.id),
@@ -134,14 +124,12 @@ const ProfileForm = () => {
                 }
             } catch (err) {
                 console.error("Error fetching profile:", err);
-                // Don't set error state here to avoid confusing the user if profile doesn't exist yet
             }
         };
 
         fetchUserProfile();
     }, [countries]);
 
-    // Fetch states when country changes
     useEffect(() => {
         if (!formData.country_id) {
             setStates([]);
@@ -156,7 +144,6 @@ const ProfileForm = () => {
                 const data = await response.json();
                 if (data.status) {
                     setStates(data.data[0]);
-                    // Clear state and city selection when country changes
                     if (!cities.length) {
                         setFormData((prev) => ({
                             ...prev,
@@ -175,7 +162,6 @@ const ProfileForm = () => {
         fetchStates();
     }, [formData.country_id]);
 
-    // Fetch cities when state changes
     useEffect(() => {
         if (!formData.state_id) {
             setCities([]);
@@ -190,7 +176,6 @@ const ProfileForm = () => {
                 const data = await response.json();
                 if (data.status) {
                     setCities(data.data[0]);
-                    // Clear city selection when state changes
                     if (!cities.length) {
                         setFormData((prev) => ({
                             ...prev,
@@ -211,7 +196,6 @@ const ProfileForm = () => {
     const handleChange = (e) => {
         const { name, value } = e.target;
 
-        // Convert ID fields to integers
         if (
             name === "country_id" ||
             name === "state_id" ||
@@ -242,7 +226,6 @@ const ProfileForm = () => {
                 return;
             }
 
-            // Make sure all ID fields are integers before submitting
             const dataToSubmit = {
                 ...formData,
                 country_id: parseInt(formData.country_id),
