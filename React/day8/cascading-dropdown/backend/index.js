@@ -3,6 +3,7 @@ const cors = require("cors");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const { Pool } = require("pg");
+const cloudinary = require("./middleware/cloudinary");
 
 const verifyToken = require("./middleware/auth");
 const app = express();
@@ -12,7 +13,9 @@ const secret_key = process.env.SECRET_KEY;
 const PORT = 3008;
 
 app.use(cors());
-app.use(express.json());
+app.use(express.json({ limit: "50mb" }));
+app.use(express.urlencoded({ limit: "50mb", extended: true }));
+app.use(express.text({ limit: "50mb" }));
 
 const pool = new Pool({
     user: "postgres",
@@ -193,9 +196,15 @@ app.get("/cities", verifyToken, (req, res) => {
 });
 
 app.post("/saveProfileInfo", verifyToken, async (req, res) => {
-    const { name, age, gender, country_id, state_id, city_id, address } =
+    const { name, age, gender, country_id, state_id, city_id, address, image } =
         req.body;
     const { username, email } = req.user;
+
+    const uploadedImage = await cloudinary.uploader.upload(image, {
+        upload_preset: "unsigned_upload",
+        public_id: `${username}avatar`,
+        allowed_formats: ["png", "jpeg", "jpg"],
+    });
 
     try {
         const userRes = await pool.query(
@@ -212,18 +221,17 @@ app.post("/saveProfileInfo", verifyToken, async (req, res) => {
         }
 
         const userId = userRes.rows[0].id;
-
+        console.log(userId);
         const existing = await pool.query(
             "SELECT * FROM user_profiles WHERE user_id = $1",
             [userId]
         );
-
+        console.log(existing);
         if (existing.rows.length > 0) {
-            await pool.query(
+            pool.query(
                 `UPDATE user_profiles SET
                  name = $1, age = $2, gender = $3, country_id = $4,
-                 state_id = $5, city_id = $6, address = $7
-                 WHERE user_id = $8`,
+                 state_id = $5, city_id = $6, address = $7, image = $8 WHERE user_id = $9`,
                 [
                     name,
                     age,
@@ -232,14 +240,31 @@ app.post("/saveProfileInfo", verifyToken, async (req, res) => {
                     state_id,
                     city_id,
                     address,
+                    uploadedImage.secure_url,
                     userId,
-                ]
+                ],
+                (error, results) => {
+                    if (error) {
+                        res.send({
+                            status: false,
+                            message: error.message,
+                            data: [],
+                        });
+                    } else {
+                        console.log(results);
+                        res.send({
+                            status: true,
+                            message: "Profile updated successfully",
+                            data: results.rows,
+                        });
+                    }
+                }
             );
         } else {
-            await pool.query(
+            pool.query(
                 `INSERT INTO user_profiles
-                 (user_id, name, age, gender, country_id, state_id, city_id, address)
-                 VALUES ($1, $2, $3, $4, $5, $6, $7, $8)`,
+                 (user_id, name, age, gender, country_id, state_id, city_id, address, image)
+                 VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)`,
                 [
                     userId,
                     name,
@@ -249,24 +274,25 @@ app.post("/saveProfileInfo", verifyToken, async (req, res) => {
                     state_id,
                     city_id,
                     address,
-                ]
+                    uploadedImage.secure_url,
+                ],
+                (error, results) => {
+                    if (error) {
+                        res.send({
+                            status: false,
+                            message: error.message,
+                            data: [],
+                        });
+                    } else {
+                        res.send({
+                            status: true,
+                            message: "Profile saved successfully",
+                            data: results.rows,
+                        });
+                    }
+                }
             );
         }
-        res.send({
-            status: true,
-            message: "Profile saved successfully",
-            data: [
-                {
-                    name: name,
-                    age: age,
-                    gender: gender,
-                    country_id: country_id,
-                    state_id: state_id,
-                    city_id: city_id,
-                    address: address,
-                },
-            ],
-        });
     } catch (error) {
         console.error(error);
         res.status(500).send({
@@ -284,7 +310,7 @@ app.get("/getProfile", verifyToken, async (req, res) => {
         const result = await pool.query(
             `SELECT
                 u.username, u.email,
-                p.name, p.age, p.gender, p.address,
+                p.name, p.age, p.gender, p.address, p.image,
                 (SELECT name FROM countries WHERE id = p.country_id) AS country,
                 (SELECT name FROM states WHERE id = p.state_id) AS state,
                 (SELECT name FROM cities WHERE id = p.city_id) AS city
