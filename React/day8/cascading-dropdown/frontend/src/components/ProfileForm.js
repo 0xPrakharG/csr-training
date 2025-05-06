@@ -14,7 +14,9 @@ const ProfileForm = () => {
         state_id: "",
         city_id: "",
         address: "",
+        image: null,
     });
+    const [image, setImage] = useState(null);
     const [countries, setCountries] = useState([]);
     const [states, setStates] = useState([]);
     const [cities, setCities] = useState([]);
@@ -57,6 +59,7 @@ const ProfileForm = () => {
             });
 
             const data = await response.json();
+            console.log(data);
             if (data.status && data.data) {
                 const foundCountry = countries.find(
                     (country) => country.name === data.data.country
@@ -70,6 +73,7 @@ const ProfileForm = () => {
                         name: data.data.name || "",
                         age: data.data.age || "",
                         gender: data.data.gender || "male",
+                        image: data.data.image || null,
                         country_id: countryId,
                         address: data.data.address || "",
                     }));
@@ -218,10 +222,25 @@ const ProfileForm = () => {
         fetchCities();
     }, [formData.state_id]);
 
-    const handleChange = (e) => {
-        const { name, value } = e.target;
+    const previewImage = (file) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
 
-        if (
+        reader.onloadend = () => {
+            setImage(reader.result);
+            setFormData((prev) => ({
+                ...prev,
+                image: reader.result,
+            }));
+        };
+    };
+
+    const handleChange = (e) => {
+        const { name, value, files } = e.target;
+
+        if (name === "image") {
+            previewImage(files[0]);
+        } else if (
             name === "country_id" ||
             name === "state_id" ||
             name === "city_id"
@@ -312,6 +331,7 @@ const ProfileForm = () => {
                     body: JSON.stringify(dataToSubmit),
                 }
             );
+            console.log(dataToSubmit);
 
             const data = await response.json();
 
@@ -340,6 +360,41 @@ const ProfileForm = () => {
             {success && <p className="success">{success}</p>}
 
             <form onSubmit={handleSubmit} className="profile-form">
+                <div className="form-group image-upload-container">
+                    <label>Profile Image</label>
+                    <div>
+                        {formData.image ? (
+                            <img
+                                src={formData.image}
+                                alt="Profile preview"
+                                className="profile-image-preview"
+                            />
+                        ) : (
+                            <div className="profile-image-preview placeholder">
+                                No image selected
+                            </div>
+                        )}
+                    </div>
+                    <input
+                        id="image"
+                        type="file"
+                        accept="image/png, image/jpg, image/jpeg"
+                        name="image"
+                        onChange={handleChange}
+                        className="file-input"
+                    />
+                    <label
+                        htmlFor="image"
+                        className="custom-file-upload"
+                        style={{ color: "#FFFFFF" }}
+                    >
+                        Choose Profile Picture
+                    </label>
+                    {formData.image && (
+                        <span className="file-name">Image selected</span>
+                    )}
+                </div>
+
                 <div className="form-group">
                     <label htmlFor="name">Full Name</label>
                     <input

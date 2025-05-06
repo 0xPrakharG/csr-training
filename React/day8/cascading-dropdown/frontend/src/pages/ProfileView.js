@@ -9,6 +9,8 @@ const ProfileView = () => {
     const [profile, setProfile] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
+    const [imageLoaded, setImageLoaded] = useState(false);
+    const [imageError, setImageError] = useState(false);
 
     const fetchProfile = async () => {
         try {
@@ -28,6 +30,8 @@ const ProfileView = () => {
 
             if (data.status) {
                 setProfile(data.data);
+                setImageLoaded(false);
+                setImageError(false);
             } else {
                 setError(data.message || "Failed to load profile");
             }
@@ -36,6 +40,14 @@ const ProfileView = () => {
         } finally {
             setLoading(false);
         }
+    };
+
+    const handleImageLoad = () => {
+        setImageLoaded(true);
+    };
+
+    const handleImageError = () => {
+        setImageError(true);
     };
 
     useEffect(() => {
@@ -87,7 +99,35 @@ const ProfileView = () => {
                 <div className="profile-header">
                     <h3>{profile.name}</h3>
                 </div>
-
+                <div className="profile-image-container">
+                    {profile.image ? (
+                        <>
+                            {!imageLoaded && !imageError && (
+                                <div className="profile-image-loading">
+                                    <div className="spinner"></div>
+                                </div>
+                            )}
+                            <img
+                                src={profile.image}
+                                alt={`${profile.name}'s profile`}
+                                className={`profile-image ${
+                                    imageLoaded ? "loaded" : "loading"
+                                }`}
+                                onLoad={handleImageLoad}
+                                onError={handleImageError}
+                            />
+                            {imageError && (
+                                <div className="profile-image placeholder">
+                                    Failed to load image
+                                </div>
+                            )}
+                        </>
+                    ) : (
+                        <div className="profile-image placeholder">
+                            No image
+                        </div>
+                    )}
+                </div>
                 <div className="profile-details">
                     <div className="profile-item">
                         <span className="label">Username:</span>

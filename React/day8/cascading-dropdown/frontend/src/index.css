@@ -422,3 +422,86 @@ select:disabled {
 .success {
     animation: fadeIn 0.5s ease-in-out;
 }
+
+.image-upload-container {
+    margin-bottom: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    grid-column: span 2;
+}
+
+@media (max-width: 768px) {
+    .image-upload-container {
+        grid-column: span 1;
+    }
+}
+
+.profile-image-preview {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #4a6fa5;
+    margin: 1rem 0;
+    background-color: #f5f7fa;
+    display: block;
+}
+
+.profile-image-preview.placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #aaa;
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+.custom-file-upload {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    background-color: #4a6fa5;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+    text-align: center;
+    margin-top: 0.5rem;
+    width: fit-content;
+}
+
+.custom-file-upload:hover {
+    background-color: #3a5c8d;
+}
+
+.file-input {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+
+.file-name {
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.profile-image-container {
+    display: flex;
+    justify-content: center;
+    padding: 1.5rem;
+    background-color: #f9fafb;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.profile-image {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid #4a6fa5;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
